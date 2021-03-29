@@ -16,7 +16,7 @@ SPICE models used in my PhD thesis
 
 * These codes are published mainly for thesis evaluation.
 
-* AlSi<sub>3</sub> - Uniformly doped silicene with Aluminium (p-type)
+* AlSi<sub>3</sub> - Uniformly doped silicene with aluminium (p-type)
 
 
 
