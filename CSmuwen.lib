@@ -1,0 +1,79 @@
+*   Library name: CSmuwen
+
+********************************************************************
+
+.LIB CSmuwen
+.PROTECT
+.OPTIONS PARHIER=LOCAL
+.OPTIONS EPSMIN=1E-99
+.OPTIONS EXPMAX=37
+
+.INC 'param.lib'
+********************************************************************
+*
+* PSi3 FET Level 1 Sub-circuit Definition
+*
+********************************************************************
+.SUBCKT  nMOS  Drain  Gate  Source  Efi=Ef 
+
+*********************************************************************
+* Parameter definition NMOS
+*********************************************************************
+
+* The 4-piece cubic spline coefficients
+.PARAM
++		Uscf(Vg,Vd,Vs)='+0.01958-0.7694*(Vg-Vs)-0.03834*(Vd-Vs)-1.244*((Vg-Vs)^2)-0.1295*(Vg-Vs)*(Vd-Vs)+ 0.1612*((Vd-Vs)^2)+4.001*((Vg-Vs)^3)-0.5977*((Vg-Vs)^2)*(Vd-Vs)+1.476*(Vg-Vs)*((Vd-Vs)^2)-1.167*((Vd-Vs)^3)-0.9192*((Vg-Vs)^4)-0.8425*((Vg-Vs)^3)*(Vd-Vs)+3.608*((Vg-Vs)^2)*((Vd-Vs)^2)-5.084*(Vg-Vs)*((Vd-Vs)^3)+2.893*((Vd-Vs)^4)-2.404*((Vg-Vs)^5)-0.03223*((Vg-Vs)^4)*(Vd-Vs)+0.3393*((Vg-Vs)^3)*((Vd-Vs)^2)-3.397*((Vg-Vs)^2)*((Vd-Vs)^3)+4.773*(Vg-Vs)*((Vd-Vs)^4)-2.306*((Vd-Vs)^5)'
++		ans(Vg,Vd,Vs)='W*(g/2)*(q/(h_ba^2))*sqrt(2*me)*((KB*T/pi)^1.5)*(log(1.0+exp(q*(Ef-Uscf(Vg,Vd,Vs))/KB/T))-log(1.0+exp(q*(Ef-Uscf(Vg,Vd,Vs)-(Vd-Vs))/KB/T)))'
+* End of parameter definition
+*********************************************************************
+
+* The voltage controlled current source
+
+GSilicene       Drain        Source          CUR='ans(V(Gate),V(Drain),V(Source))'
+
+Edrain   Vdrain     Gnd    VCVS   Drain       Gnd   0.6
+Egate    Vgate      Gnd    VCVS   Gate        Gnd   0.6
+Esource  Vsource    Gnd    VCVS   Source      Gnd   0.6
+    
+
+.ENDS nMOS
+* End of nMOS Sub-circuit Definition
+
+********************************************************************
+*
+* P-Silicene Level 1 Sub-circuit Definition (AlSi3)
+* to be determined
+********************************************************************
+.SUBCKT  pMOS  Drain  Gate  Source  Efi=Ef  
+
+*********************************************************************
+* Parameter definition PMOS
+*********************************************************************
+
+* The 4-piece cubic spline coefficients
+.PARAM
++		Uscf(Vg,Vd,Vs)='+0.02028-0.7624*(Vs-Vg)-0.03939*(Vs-Vd)-1.342*((Vs-Vg)^2)-0.1448*(Vs-Vg)*(Vs-Vd)+0.1822*((Vs-Vd)^2)+4.472*((Vs-Vg)^3)-0.6009*((Vs-Vg)^2)*(Vs-Vd)+1.563*(Vs-Vg)*((Vs-Vd)^2)-1.279*((Vs-Vd)^3)-1.672*((Vs-Vg)^4)-0.786*((Vs-Vg)^3)*(Vs-Vd)+3.558*((Vs-Vg)^2)*((Vs-Vd)^2)-5.24*(Vs-Vg)*((Vs-Vd)^3)+3.119*((Vs-Vd)^4)-2.001*((Vs-Vg)^5)+0.009736*((Vs-Vg)^4)*(Vs-Vd)+0.1909*((Vs-Vg)^3)*((Vs-Vd)^2)-3.254*((Vs-Vg)^2)*((Vs-Vd)^3)+4.847*(Vs-Vg)*((Vs-Vd)^4)-2.461*((Vs-Vd)^5)'
++		ans(Vg,Vd,Vs)='-W*(g/2)*(q/(h_ba^2))*sqrt(2*mh)*((KB*T/pi)^1.5)*(log(1.0+exp(q*(Ef-Uscf(Vg,Vd,Vs))/KB/T))-log(1.0+exp(q*(Ef-Uscf(Vg,Vd,Vs)-(Vs-Vd))/KB/T)))'
+
+* End of parameter definition
+*********************************************************************
+
+* The voltage controlled current source
+
+GSilicene       Drain        Source          CUR='ans(V(Gate),V(Drain),V(Source))'
+Edrain   Vdrain     Gnd    VCVS   Drain       Gnd   -0.6
+Egate    Vgate      Gnd    VCVS   Gate        Gnd   -0.6
+Esource  Vsource    Gnd    VCVS   Source      Gnd   -0.6
+Evdd     VddM       Gnd    VCVS   Drain       Gnd    0.6
+EVgg     VggM       Gnd    VCVS   Gate        Gnd    0.6
+EVss     VssM       Gnd    VCVS   Source      Gnd    0.6
+
+
+.ENDS pMOS
+* End of pMOS Sub-circuit Definition
+
+ 
+.UNPROTECT
+
+.ENDL CSmuwen
+

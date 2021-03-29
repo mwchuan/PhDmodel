@@ -1,0 +1,32 @@
+*   Library name: param.lib
+
+********************************************************************
+* Global parameters
+********************************************************************
+
+.PROTECT
+
+.PARAM 
++      q=1.60e-19           $ Electronic charge
++      g=2                  $ Degeneracy factor
++      me=0.20930e-30       $ Effective mass of PSi3 (0.230*m0)
++      mh=0.23205e-30       $ Effective mass of AlSi3 (0.255*m0)
++      pi=3.1415926         $ PI, constant
++      h=6.625e-34          $ Planck constant
++      h_ba=1.0552e-34      $ h_bar
++      KB=1.380e-23         $ Boltzmann constant
++      epsr=8.854e-12       $ Dielectric constant in vacuum
++	   k=3.9				$ Relative dielectric constant
++	   t0=1.5e-9			$ The gate dioxide thickness
++	   L=10e-9   			$ Length of FET
++	   N0=1.1431e3			$ Flat band mobile charge density
++	   Cso=0		    	$ Source capacitance coefficient
++	   Cdo=0.035			$ Drain capacitance coefficient
++	   Ef=-0.2982			$ Fermi level (LOP CMOS application)
++	   W=10e-9     			$ Width of FET
++	   T=300				$ Temperature
++      lambda_op=29e-9      $ The Optical Phonon backscattering mean-free-path (silicene)
++      lambda_ap=178e-9     $ The Acoustic Phonon backscattering mean-free-path (silicene)
+
+
+.UNPROTECT
