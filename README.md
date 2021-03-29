@@ -12,7 +12,7 @@ SPICE models used in my PhD thesis
 
 * The self-consistent potential was extracted from TOB nanotransistor model and fitted using MATLAB curve fitting tool for fifth order polynomial.
 
-* Run using Synopsis HSPICE (Please keep all the SPICE file in the same folder)
+* Run using Synopsis HSPICE (please keep all the SPICE file in the same folder)
 
 * These codes are published mainly for thesis evaluation.
 
