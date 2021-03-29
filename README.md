@@ -1,6 +1,6 @@
 # **PhDmodel**
 
--SPICE models used in my PhD thesis
+SPICE models used in my PhD thesis
 
 
 
